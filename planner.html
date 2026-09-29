@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Planner{% endblock %}
+{% block content %}
+<section class="page-head"><h1>Smart Budget Planner</h1><p>Choose a planner and submit your budget.</p></section>
+<div class="tabs">
+<button class="tab active" data-tab="home">🏠 Home</button>
+<button class="tab" data-tab="party">🎉 Party</button>
+<button class="tab" data-tab="jewelry">💎 Jewelry</button>
+</div>
+
+<div id="home" class="panel active">
+<form class="plannerForm" data-endpoint="/api/generate-home">
+<input name="budget" type="number" min="1" step="0.01" placeholder="Budget" required>
+<input name="room" placeholder="Room (Living Room, Bedroom...)" required>
+<input name="style" placeholder="Style" value="Modern">
+<input name="items" placeholder="Items" value="lights, ceiling fan, storage">
+<button class="btn">Generate Home Recommendations</button>
+</form>
+</div>
+
+<div id="party" class="panel">
+<form class="plannerForm" data-endpoint="/api/generate-party">
+<input name="budget" type="number" min="1" step="0.01" placeholder="Budget" required>
+<input name="guests" type="number" min="1" placeholder="Guests" required>
+<input name="event_type" placeholder="Event type" value="Birthday">
+<input name="venue" placeholder="Venue preference" value="Indoor">
+<button class="btn">Generate Party Recommendations</button>
+</form>
+</div>
+
+<div id="jewelry" class="panel">
+<form class="plannerForm" data-endpoint="/api/generate-jewelry" enctype="multipart/form-data">
+<input name="budget" type="number" min="1" step="0.01" placeholder="Budget" required>
+<input name="occasion" placeholder="Occasion" value="Wedding">
+<input name="style" placeholder="Style" value="Elegant">
+<input name="outfit_color" placeholder="Outfit color (optional)">
+<input name="image" type="file" accept="image/*">
+<button class="btn">Generate Jewelry Recommendations</button>
+</form>
+</div>
+
+<section id="result" class="result"></section>
+{% endblock %}
